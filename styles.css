@@ -1,3 +1,4 @@
+/* styles.css */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -54,3 +55,22 @@ nav a {
 .dark-mode header, .dark-mode nav, .dark-mode footer {
   background: #000;
 }
+
+/* script.js */
+document.addEventListener("DOMContentLoaded", () => {
+  const heroes = document.querySelectorAll(".hero");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  }, { threshold: 0.3 });
+
+  heroes.forEach(hero => observer.observe(hero));
+
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
+  darkModeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+  });
+});
